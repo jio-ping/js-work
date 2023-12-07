@@ -10,7 +10,7 @@
 /*
 
 --1. 사용자 입력단계
-    1. 이메일 윺효검증
+    1. 이메일 유효검증
       - false면 해당 input에 is--invalid 추가
           node.classList.remove('is--invalid')
     - true면 해당 input에 is--invalid 제거
@@ -32,7 +32,7 @@
     value === user.pw
 
   
-    3. 
+    3. welcome.html 으로 옮겨 @  
 
 */
 
@@ -50,39 +50,29 @@ function pwReg(text) {
 }
 
 const email = document.getElementById("userEmail");
-const emailError = document.getElementById("userEmailError");
-
 const pwd = document.getElementById("userPassword");
-const pwdError = document.getElementById("userPasswordError");
 
-function validEmail() {
-  if (emailReg(email.value)) {
-    emailError.classList.remove("is--invalid");
-  } else {
-    emailError.classList.add("is--invalid");
-    console.log(emailError);
-  }
-  console.log(email.value);
-}
+const validEmail = () =>
+  emailReg(email.value)
+    ? email.classList.remove("is--invalid")
+    : email.classList.add("is--invalid");
 
-function validPwd() {
-  if (pwReg(pwd.value)) {
-    pwdError.classList.remove("is--invalid");
-  } else {
-    pwdError.classList.add("is--invalid");
-  }
-}
+const validPwd = () => {
+  pwReg(pwd.value)
+    ? pwd.classList.remove("is--invalid")
+    : pwd.classList.add("is--invalid");
+};
+
+const checkEmail = (email) => (email.value === user.id ? true : false);
+const checkPwd = (pwd) => (pwd.value === user.pw ? true : false);
 
 function Login() {
   if (checkEmail(email) && checkPwd(pwd)) {
-    window.location.href = "";
+    window.location.href = welcome.html;
   } else {
     alert("앙대!");
   }
 }
-
-const checkEmail = (email) => (email.value === user.id ? true : false);
-const checkPwd = (pwd) => (pwd.value === user.pw ? true : false);
 
 const user = {
   id: "asd@naver.com",
