@@ -37,7 +37,6 @@
               aria-invalid="false"
               aria-describedby="userEmailError"
               aria-live="assertive"
-              oninput="validEmail()"
             />
             <span class="error-message" id="userEmailError"
               >아이디는 이메일 형식으로 입력해 주세요.</span
@@ -55,10 +54,11 @@
               aria-invalid="false"
               aria-describedby="userPasswordError"
               aria-live="polite"
-              oninput="validPwd()"
+              autocomplete="on"
+              maxlength="16"
             />
             <span class="error-message" id="userPasswordError"
-              >비밀번호는 특수문자 포함 6자리 이상 입력해 주세요.</span
+              >비밀번호는 숫자, 특수문자 포함 6자리 이상 입력해 주세요.</span
             >
           </div>
           <div class="login-state-ip-security-checkbox-wrapper">
@@ -97,8 +97,8 @@
               </div>
             </div>
           </div>
-          <!-- type="submit" -->
-          <button class="btn-login" onclick="Login()">로그인</button>
+
+          <button type="submit" class="btn-login">로그인</button>
         </div>
       </fieldset>
     </form>
