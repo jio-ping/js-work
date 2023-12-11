@@ -47,13 +47,18 @@ function pwReg(text) {
 }
 //
 const email = document.getElementById("userEmail");
-email.addEventListener("input", () => valid(email));
 const pw = document.getElementById("userPassword");
-pw.addEventListener("input", () => valid(pw));
+const loginButton = document.querySelector(".btn-login");
+const user = {
+  id: "asd@naver.com",
+  pw: "spdlqj123!@",
+};
 
 /*
  비슷한 기능을 하는 함수를 인자별로 나눠서 새 함수로 작성하는게 좋을까요 ?
  아니면 합쳐서 한 함수로 두는 게 좋을까요 ? 
+
+
 */
 
 const validEmail = () =>
@@ -114,11 +119,70 @@ function Login(e) {
   }
 }
 
-//로그인 버튼
-const loginButton = document.querySelector(".btn-login");
+//이벤트 리스너
+email.addEventListener("input", () => valid(email));
+pw.addEventListener("input", () => valid(pw));
 loginButton.addEventListener("click", (e) => Login(e));
 
-const user = {
-  id: "asd@naver.com",
-  pw: "spdlqj123!@",
+//클로저 ?
+const createLoginForm = () => {
+  const email = document.getElementById("email");
+  const pw = document.getElementById("pw");
+  let emailPass = false;
+  let pwPass = false;
+
+  function emailReg(text) {
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return re.test(String(text).toLowerCase());
+  }
+
+  function pwReg(text) {
+    const re = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{6,16}$/;
+    return re.test(String(text).toLowerCase());
+  }
+  //
+
+  const validEmail = () => {
+    let value = this.value;
+    if (emailReg(value)) {
+      email.classList.remove("is--invalid");
+      emailPass = true;
+    } else {
+      email.classList.add("is--invalid");
+      emailPass = false;
+    }
+  };
+
+  const validPw = () => {
+    let value = this.value;
+    if (pwReg(value)) {
+      pw.classList.remove("is--invalid");
+      pwPass = true;
+    } else {
+      pw.classList.add("is--invalid");
+      pwPass = false;
+    }
+  };
+
+  const checkUser = (user) => {
+    return email.value === user.id && pw.value === user.pw;
+  };
+
+  const login = (e) => {
+    e.preventDefault();
+    if (checkUser(currentUser)) {
+      window.location.href = "welcome.html";
+    } else {
+      alert("잘못된 아이디 또는 비밀번호여요👽");
+    }
+  };
+
+  return {
+    validEmail,
+    validPw,
+    login,
+    emailPass,
+  };
 };
