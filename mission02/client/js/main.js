@@ -1,4 +1,3 @@
-
 /* 
 
 1. 클릭 이벤트 활성화
@@ -9,16 +8,40 @@
 
 */
 
+const nav = document.querySelector(".nav");
+function clickHandler(e) {
+  const ul = e.target.closest("ul");
+  const li = e.target.closest("li");
+  if (!li) return;
 
+  //다른 프로퍼티로 잡는거 연습해볼것 !
+  const list = [...ul.children];
+  list.forEach((li) => li.classList.remove("is-active"));
+  console.log(li);
+  li.classList.add("is-active");
+  setBgColor(li.dataset.index);
+  setNameText(li.dataset.index);
+  setImage(li.dataset.index);
+}
 
+//배경 변경
+function setBgColor(index) {
+  const bgColor = data[index - 1]["color"];
+  document.body.style[
+    "background"
+  ] = `linear-gradient(to bottom,${bgColor[0]},${bgColor[1]})`;
+}
 
+function setImage(index) {
+  const name = data[index - 1]["name"].toLowerCase();
+  const visual = document.querySelector(".visual img");
+  visual.src = `./assets/${name}.jpeg`;
+}
 
+function setNameText(index) {
+  const name = data[index - 1]["name"];
+  let nickName = document.querySelector(".nickName");
+  nickName.innerHTML = data[index - 1]["name"];
+}
 
-
-
-
-
-
-
-
-
+nav.addEventListener("click", clickHandler);
