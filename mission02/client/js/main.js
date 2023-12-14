@@ -17,11 +17,12 @@ function clickHandler(e) {
   //다른 프로퍼티로 잡는거 연습해볼것 !
   const list = [...ul.children];
   list.forEach((li) => li.classList.remove("is-active"));
-  console.log(li);
   li.classList.add("is-active");
+
   setBgColor(li.dataset.index);
   setNameText(li.dataset.index);
   setImage(li.dataset.index);
+  setAudio(li.dataset.index);
 }
 
 //배경 변경
@@ -42,6 +43,14 @@ function setNameText(index) {
   const name = data[index - 1]["name"];
   let nickName = document.querySelector(".nickName");
   nickName.innerHTML = data[index - 1]["name"];
+}
+
+function setAudio(index) {
+  const name = data[index - 1]["name"].toLowerCase();
+  let audio = new Audio(`./assets/audio/${name}.m4a`);
+  audio.load();
+  audio.volume = 1;
+  audio.play();
 }
 
 nav.addEventListener("click", clickHandler);
