@@ -37,6 +37,7 @@ function setImage(index) {
   const name = data[index - 1]["name"].toLowerCase();
   const visual = document.querySelector(".visual img");
   visual.src = `./assets/${name}.jpeg`;
+  visual.alt = data[index - 1]["alt"];
 }
 
 function setNameText(index) {
