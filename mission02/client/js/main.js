@@ -9,44 +9,45 @@
 */
 
 const nav = document.querySelector(".nav");
+
+let soundConfirm = window.confirm(
+  "🔈 엘리멘탈 친구들의 목소리를 들어보겠어요?"
+);
+
 function clickHandler(e) {
-  const ul = e.target.closest("ul");
   const li = e.target.closest("li");
   if (!li) return;
-
-  //다른 프로퍼티로 잡는거 연습해볼것 !
-  const list = [...ul.children];
+  const list = Array.from(li.parentElement.children);
   list.forEach((li) => li.classList.remove("is-active"));
   li.classList.add("is-active");
-  console.log(li);
-  let selectedIndex = li.dataset.index;
+  let selectedIndex = li.dataset.index - 1;
   setBgColor(selectedIndex);
   setNameText(selectedIndex);
   setImage(selectedIndex);
-  setAudio(selectedIndex);
+  if (soundConfirm) setAudio(selectedIndex);
 }
 
 function setBgColor(index) {
-  const bgColor = data[index - 1]["color"];
+  const bgColor = data[index]["color"];
   document.body.style[
     "background"
   ] = `linear-gradient(to bottom,${bgColor[0]},${bgColor[1]})`;
 }
 
 function setImage(index) {
-  const name = data[index - 1]["name"].toLowerCase();
+  const name = data[index]["name"].toLowerCase();
   const visual = document.querySelector(".visual img");
   visual.src = `./assets/${name}.jpeg`;
-  visual.alt = data[index - 1]["alt"];
+  visual.alt = data[index]["alt"];
 }
 
 function setNameText(index) {
   let nickName = document.querySelector(".nickName");
-  nickName.innerHTML = data[index - 1]["name"];
+  nickName.innerHTML = data[index]["name"];
 }
 
 function setAudio(index) {
-  const name = data[index - 1]["name"].toLowerCase();
+  const name = data[index]["name"].toLowerCase();
   let audio = new Audio(`./assets/audio/${name}.m4a`);
   audio.load();
   //웨이드 너무 시끄러워요
