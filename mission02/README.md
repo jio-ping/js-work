@@ -71,3 +71,8 @@ function setAudio(index) {
   audio.play();
 }
 ```
+
+##### 궁금증🤓 ......
+
+soundConfirm 변수로 사용자에게 소리를 들을지 선택할 수 있도록 window.confirm 창을 띄웠습니다.
+운 좋으면 시연영상처럼 화면이 렌더링된 후 confirm창이 뜨지만 , 대체로 h1 요소(이름들)먼저 보여지고 confirm창이 뜨더라고요. 제가 알기론 defer을 걸어놓으면 html 파싱후 스크립트 파일을 실행하는 걸로 알았는데 그게 아닌가요 🫨
