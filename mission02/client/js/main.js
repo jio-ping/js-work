@@ -18,14 +18,14 @@ function clickHandler(e) {
   const list = [...ul.children];
   list.forEach((li) => li.classList.remove("is-active"));
   li.classList.add("is-active");
-
-  setBgColor(li.dataset.index);
-  setNameText(li.dataset.index);
-  setImage(li.dataset.index);
-  setAudio(li.dataset.index);
+  console.log(li);
+  let selectedIndex = li.dataset.index;
+  setBgColor(selectedIndex);
+  setNameText(selectedIndex);
+  setImage(selectedIndex);
+  setAudio(selectedIndex);
 }
 
-//배경 변경
 function setBgColor(index) {
   const bgColor = data[index - 1]["color"];
   document.body.style[
@@ -41,7 +41,6 @@ function setImage(index) {
 }
 
 function setNameText(index) {
-  const name = data[index - 1]["name"];
   let nickName = document.querySelector(".nickName");
   nickName.innerHTML = data[index - 1]["name"];
 }
@@ -50,6 +49,12 @@ function setAudio(index) {
   const name = data[index - 1]["name"].toLowerCase();
   let audio = new Audio(`./assets/audio/${name}.m4a`);
   audio.load();
+  //웨이드 너무 시끄러워요
+  if (name === "wade") {
+    audio.volume = 0.5;
+    audio.play();
+    return;
+  }
   audio.volume = 1;
   audio.play();
 }
