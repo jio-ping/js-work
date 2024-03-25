@@ -3,34 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Elmental Movie Poster</title>
+    <title>Elemental Movie Poster</title>
     <link rel="stylesheet" href="./css/output.css" />
     <script type="module" src="./main.js"></script>
   </head>
-  <body class="h-svh">
+  <body
+    class="h-screen bg-gradient-to-b from-[#ff6a00] to-[#720400] flex justify-center"
+  >
     <div class="container flex flex-col justify-center items-center gap-3">
       <figure class="visual">
-        <figcaption><h1 class="text-center text-lg">EMBER</h1></figcaption>
-        <img class="w-full" src="./assets/ember.jpeg" alt="엠버 포스터" />
+        <figcaption>
+          <h1 id="characterName" class="text-center text-3xl text-white">
+            EMBER
+          </h1>
+        </figcaption>
+        <img
+          id="mainPoster"
+          class="w-full"
+          src="./assets/ember.jpeg"
+          alt="엠버 포스터"
+        />
       </figure>
-      <nav id="nav" class="w-[600px]">
-        <ul class="flex gap-3">
-          <li class="is-active" data-index="1">
+      <nav class="w-[600px]">
+        <ul id="nav" class="flex gap-3">
+          <li class="is-active" data-index="0">
             <button>
-              <img class="" src="./assets/ember.jpeg" alt="엠버 포스터" />
+              <img src="./assets/ember.jpeg" alt="엠버 포스터" />
             </button>
           </li>
-          <li data-index="2">
+          <li data-index="1">
             <button>
               <img src="./assets/wade.jpeg" alt="웨이드 포스터" />
             </button>
           </li>
-          <li data-index="3">
+          <li data-index="2">
             <button>
               <img src="./assets/clod.jpeg" alt="클로드 포스터" />
             </button>
           </li>
-          <li data-index="4">
+          <li data-index="3">
             <button><img src="./assets/gale.jpeg" alt="게일 포스터" /></button>
           </li>
         </ul>
